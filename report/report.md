@@ -7,20 +7,29 @@ Authors:
   Alban Favre
 ```
 
+### Introduction
+In this lab we will dive in the Loadbalancing with an dynamique containers infrastructure.
+
 ### Task 0
 
 - **[M1]**
-
+No, Because we can't manage manually the failure of the containers (with 2 it is ok but with more than 1k services it will be complicated)
 - **[M2]**
+We need to:
+   - add a new entry in the ``.env`` file
+   - add the new entry in the ``haproxy.cfg``
+   - create the new container with the right ip address
 
 - **[M3]**
+We can use a dynamic solution to detect the configuration of our containers and transmit it to our loadbalancer.  
 
 - **[M4]**
+On of our container can speak to the others for retrieving their configuration.
 
 - **[M5]**
-
+TODO
 - **[M6]**
-
+TODO
 
 ### Task 1
 
@@ -167,3 +176,7 @@ Authors:
    references to your readings for the improvements.
 
 3. (Optional:) Present a live demo where you add and remove a backend container.
+
+### Difficulties
+
+### Conclusion
