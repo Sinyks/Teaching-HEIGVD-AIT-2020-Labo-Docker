@@ -35,7 +35,7 @@ TODO
 
 The page ``192.168.42.42:1936``
 
-![](report/images/capture/task0/Q1.png)
+![](./report/images/capture/task0/Q1.png)
 
 The URL of our Repository is :
 https://github.com/Sinyks/Teaching-HEIGVD-AIT-2020-Labo-Docker
