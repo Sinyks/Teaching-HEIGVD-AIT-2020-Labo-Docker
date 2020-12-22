@@ -47,7 +47,19 @@ https://github.com/Sinyks/Teaching-HEIGVD-AIT-2020-Labo-Docker
 
 1. Take a screenshot of the stats page of HAProxy at <http://192.168.42.42:1936>. You should see your backend nodes. It should be really similar to the screenshot of the previous task.
 
+**We can see the stat page**
+![](./images/capture/task1/HAProxa_Step1.png)
+
 2. Describe your difficulties for this task and your understanding of what is happening during this task. Explain in your own words why are we installing a process supervisor. Do not hesitate to do more research and to find more articles on that topic to illustrate the problem.
+
+For this task we faced a problem mentioned in **M5**, that our container can only do one thing (in our case run a webserver) In our case if we want to have more than one process run by a container it is required to do a little trick, we have installed a process supervisor called ``s6`` to run for now only our application in the container 
+
+the point of view of ``s6`` team for the docker way are formulated like this: 
+
+- Containers should do one **thing**
+- Containers should stop when that thing stops
+
+The **one Thing** is the main difference between the docker Mantra and the policy of ``s6`` with docker, a Thing can be a service running multiple process and it's fine.
 
 ### Task 2
 
