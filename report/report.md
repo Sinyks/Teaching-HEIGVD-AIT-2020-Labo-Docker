@@ -113,10 +113,26 @@ $ docker-compose logs --no-color webapp2 > ./logs/task_2/webapp2.log
 
 2. Give the answer to the question about the existing problem with the current solution.
 
+**[M4]** Pour gérer l'autoconfiguration de notre loadbalancer nous avons introduit l'outil ``Serf`` qui va permettre à nos container de communiquer entre eux dans un cluster décentraliser. Permettant au loadbalancer de configurer sa liste d'host disponible de façon plus dynamique
 
+Une problématique soulevé plus haut, usage du ``--replay``, est intéressante, comme nous utilisons des conteneur docker dont l'usage de s6 nous décris ce ``mantra``.
+
+- Containers should stop when that thing stops
+
+Quand le container va quitter nous le remplacerons par une nouvelle instance et donc un conteneur différent.
 
 3. Give an explanation on how `Serf` is working. Read the official website to get more details about the `GOSSIP` protocol used in `Serf`. Try to find other solutions that can be used to solve similar situations where we need some auto-discovery mechanism.
 
+**Fonctionnement de Serf**
+
+Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant:
+   - Un noeud seul peut créer un nouveau cluster ou rejoindre un existant
+   - Dès qu'un nouveau noeud rejoins un cluster il commence par faire se synchroniser avec d'autre noeuds (annonce et découverte)
+   - Il commence ensuite à bavarder, communiquer sa préscence dans le cluster
+
+**Autre solution**
+
+   Autre que ``Serf`` il existe d'autre outil pour effectuer de la découverte automatique, on peut citer ``Consul`` qui s'appuie sur la technologie de Serf ou encore ``Treafik`` qui gère la découverte de façon centralisé.
 
 ### Task 3
 
