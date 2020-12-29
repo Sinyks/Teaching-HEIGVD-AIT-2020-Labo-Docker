@@ -1,0 +1,35 @@
+Attaching to ha
+ha         | [s6-init] making user provided files available at /var/run/s6/etc...exited 0.
+ha         | [s6-init] ensuring user provided files have correct perms...exited 0.
+ha         | [fix-attrs.d] applying ownership & permissions fixes...
+ha         | [fix-attrs.d] done.
+ha         | [cont-init.d] executing container initialization scripts...
+ha         | [cont-init.d] done.
+ha         | [services.d] starting services
+ha         | [services.d] done.
+ha         | /opt/bin/serf agent --join ha --replay --event-handler member-join=/serf-handlers/member-join.sh --event-handler member-leave,member-failed=/serf-handlers/member-leave.sh --tag role=balancer
+ha         | ==> Starting Serf agent...
+ha         | ==> Starting Serf agent RPC...
+ha         | ==> Serf agent running!
+ha         |          Node name: 'a4e006a0a784'
+ha         |          Bind addr: '0.0.0.0:7946'
+ha         |                        RPC addr: '127.0.0.1:7373'
+ha         |                       Encrypted: false
+ha         |                        Snapshot: false
+ha         |                         Profile: lan
+ha         |     Message Compression Enabled: true
+ha         | ==> Joining cluster...(replay: true)
+ha         |     Join completed. Synced with 1 initial agents
+ha         | 
+ha         | ==> Log data will now stream in as it occurs:
+ha         | 
+ha         |     2020/12/29 10:58:02 [INFO] agent: Serf agent starting
+ha         |     2020/12/29 10:58:02 [INFO] serf: EventMemberJoin: a4e006a0a784 192.168.42.42
+ha         |     2020/12/29 10:58:02 [INFO] agent: joining: [ha] replay: true
+ha         |     2020/12/29 10:58:02 [INFO] agent: joined: 1 nodes
+ha         |     2020/12/29 10:58:02 [INFO] serf: EventMemberJoin: 91f8a38eafc4 192.168.42.11
+ha         |     2020/12/29 10:58:02 [INFO] serf: EventMemberJoin: 0bb0cae6202c 192.168.42.22
+ha         | [WARNING] 363/105802 (209) : Server nodes/s1 is DOWN, reason: Layer4 connection problem, info: "Connection refused", check duration: 0ms. 1 active and 0 backup servers left. 0 sessions active, 0 requeued, 0 remaining in queue.
+ha         |     2020/12/29 10:58:03 [INFO] agent: Received event: member-join
+ha         |     2020/12/29 10:58:03 [ERR] agent: Error invoking script '/serf-handlers/member-join.sh': exit status 127
+ha         | [WARNING] 363/105806 (209) : Server nodes/s1 is UP, reason: Layer7 check passed, code: 200, check duration: 6ms. 2 active and 0 backup servers online. 0 sessions requeued, 0 total in queue.
