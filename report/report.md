@@ -21,15 +21,22 @@ We need to:
    - create the new container with the right ip address
 
 - **[M3]**
-We can use a dynamic solution to detect the configuration of our containers and transmit it to our loadbalancer.  
+We can use a dynamic solution to detect the configuration of our containers and transmit it to our loadbalancer.
 
 - **[M4]**
 On of our container can speak to the others for retrieving their configuration.
 
 - **[M5]**
-TODO
+It is reasonable to add one container that will receive logs and process them, such as a Sentry server. Then, we would need to change the code with which each webapp container is launched so that event logs are forwared to Sentry. That way, we have a centralized log mechanism.
+
 - **[M6]**
-TODO
+One approach would be to set a given number of servers for a backend, say 10, and use resolvers instead of hard-coded IP addresses.
+
+```
+server s1 app1.domain.com:80 check resolvers mydns
+```
+
+That way, we can assign any number of real backend servers for HAProxy to use through DNS update which, given a short TTL and HAProxy timeout, could mean a practically instantaneous switch.
 
 **Delivrable**
 
@@ -52,9 +59,9 @@ https://github.com/Sinyks/Teaching-HEIGVD-AIT-2020-Labo-Docker
 
 2. Describe your difficulties for this task and your understanding of what is happening during this task. Explain in your own words why are we installing a process supervisor. Do not hesitate to do more research and to find more articles on that topic to illustrate the problem.
 
-For this task we faced a problem mentioned in **M5**, that our container can only do one thing (in our case run a webserver) In our case if we want to have more than one process run by a container it is required to do a little trick, we have installed a process supervisor called ``s6`` to run for now only our application in the container 
+For this task we faced a problem mentioned in **M5**, that our container can only do one thing (in our case run a webserver) In our case if we want to have more than one process run by a container it is required to do a little trick, we have installed a process supervisor called ``s6`` to run for now only our application in the container
 
-the point of view of ``s6`` team for the docker way are formulated like this: 
+the point of view of ``s6`` team for the docker way are formulated like this:
 
 - Containers should do one **thing**
 - Containers should stop when that thing stops
@@ -113,13 +120,13 @@ Example:
   `flattening` images.
 
 2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
-   
+
 3. Provide the `/tmp/haproxy.cfg` file generated in the `ha` container after each step.  Place the output into the `logs` folder like you
    already did for the Docker logs in the previous tasks. Three files are expected.
-   
+
    In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with
 `docker inspect <container>`. Four files are expected.
-   
+
 4. Based on the three output files you have collected, what can you say about the way we generate it? What is the problem if any?
 
 
@@ -128,17 +135,17 @@ Example:
 **Deliverables**:
 
 1. Provide the file `/usr/local/etc/haproxy/haproxy.cfg` generated in the `ha` container after each step. Three files are expected.
-   
+
 In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with
    `docker inspect <container>`. Four files are expected.
-   
+
 2. Provide the list of files from the `/nodes` folder inside the `ha` container. One file expected with the command output.
-   
+
 3. Provide the configuration file after you stopped one container and the list of nodes present in the `/nodes` folder. One file expected
    with the command output. Two files are expected.
-   
+
  In addition, provide a log file containing the output of the `docker ps` console. One file expected.
-   
+
 4. (Optional:) Propose a different approach to manage the list of backend nodes. You do not need to implement it. You can also propose your
    own tools or the ones you discovered online. In that case, do not forget to cite your references.
 
@@ -148,13 +155,13 @@ In addition, provide a log file containing the output of the `docker ps` console
 
 1. Take a screenshots of the HAProxy stat page showing more than 2 web applications running. Additional screenshots are welcome to see a
    sequence of experimentations like shutting down a node and starting more nodes.
-   
+
    Also provide the output of `docker ps` in a log file. At least one file is expected. You can provide one output per step of your
 experimentation according to your screenshots.
-   
+
 2. Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide
    references to your readings for the improvements.
-   
+
 3. (Optional:) Present a live demo where you add and remove a backend container.
 
 ### Difficulties
