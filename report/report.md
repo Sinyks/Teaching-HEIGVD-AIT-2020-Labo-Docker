@@ -160,9 +160,11 @@ Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant
   RUN command 1 && command 2 && command 3
   ```
 
-  There are also some articles about techniques to reduce the image
-  size. Try to find them. They are talking about `squashing` or
-  `flattening` images.
+  There are also some articles about techniques to reduce the imagesize. Try to find them. They are talking about `squashing` or `flattening` images.
+
+**R:** Lorsque l'on effectue plusieur action (RUN, COPY,...) dans le dockerfile cela va, lors du build nous créer des layers R/O qui seront réutiliser lors du build si aucun changement n'a eu lieu sur la ligne en question, cela rendra la mise à jour de l'image certe plus rapide cependant la création de multiple layers aura un impact sur la taille des images. Il est donc d'usage de regrouper les action/commandes de façon judicieuse (un seul RUN pour l'installation des packages par ex.). 
+
+**Autres moyens:** TODO
 
 2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
 
