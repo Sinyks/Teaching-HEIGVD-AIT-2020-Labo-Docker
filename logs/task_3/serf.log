@@ -1,0 +1,8 @@
+Member join script triggered
+Member join event received from: c5f6accd2969 with role backend
+Member join event received from: bb2c2d77c02e with role balancer
+Member join event received from: 8ec7618bfc1e with role backend
+Member leave/join script triggered
+Member member-leave event received from: c5f6accd2969 with role backend
+Member leave/join script triggered
+Member member-leave event received from: 8ec7618bfc1e with role backend

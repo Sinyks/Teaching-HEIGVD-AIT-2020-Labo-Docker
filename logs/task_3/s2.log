@@ -1,0 +1,50 @@
+[s6-init] making user provided files available at /var/run/s6/etc...exited 0.
+[s6-init] ensuring user provided files have correct perms...exited 0.
+[fix-attrs.d] applying ownership & permissions fixes...
+[fix-attrs.d] done.
+[cont-init.d] executing container initialization scripts...
+[cont-init.d] done.
+[services.d] starting services
+/opt/bin/serf agent --join ha --tag role=backend
+==> Starting Serf agent...
+[services.d] done.
+==> Starting Serf agent RPC...
+==> Serf agent running!
+         Node name: '8ec7618bfc1e'
+         Bind addr: '0.0.0.0:7946'
+                       RPC addr: '127.0.0.1:7373'
+                      Encrypted: false
+                       Snapshot: false
+                        Profile: lan
+    Message Compression Enabled: true
+==> Joining cluster...(replay: false)
+    Join completed. Synced with 1 initial agents
+
+==> Log data will now stream in as it occurs:
+
+    2021/01/01 19:36:02 [INFO] agent: Serf agent starting
+    2021/01/01 19:36:02 [INFO] serf: EventMemberJoin: 8ec7618bfc1e 192.168.42.22
+    2021/01/01 19:36:02 [INFO] agent: joining: [ha] replay: false
+    2021/01/01 19:36:02 [INFO] serf: EventMemberJoin: bb2c2d77c02e 192.168.42.42
+    2021/01/01 19:36:02 [INFO] agent: joined: 1 nodes
+Application started
+    2021/01/01 19:36:03 [INFO] serf: EventMemberJoin: c5f6accd2969 192.168.42.11
+HEAD / 200 7.624 ms - 129
+    2021/01/01 19:36:04 [INFO] agent: Received event: member-join
+HEAD / 200 1.057 ms - 129
+HEAD / 200 0.770 ms - 129
+HEAD / 200 0.776 ms - 129
+    2021/01/01 19:36:10 [INFO] memberlist: Suspect c5f6accd2969 has failed, no acks received
+HEAD / 200 0.963 ms - 129
+    2021/01/01 19:36:12 [INFO] memberlist: Suspect c5f6accd2969 has failed, no acks received
+==> Caught signal: interrupt
+==> Gracefully shutting down agent...
+    2021/01/01 19:36:13 [INFO] agent: requesting graceful leave from Serf
+[cont-finish.d] executing container finish scripts...
+[cont-finish.d] done.
+[s6-finish] waiting for services.
+[s6-finish] sending all processes the TERM signal.
+    2021/01/01 19:36:13 [INFO] agent: requesting serf shutdown
+    2021/01/01 19:36:13 [WARN] serf: Shutdown without a Leave
+    2021/01/01 19:36:13 [INFO] agent: shutdown complete
+[s6-finish] sending all processes the KILL signal and exiting.
