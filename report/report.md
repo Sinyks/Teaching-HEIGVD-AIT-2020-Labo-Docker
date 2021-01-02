@@ -174,8 +174,13 @@ Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant
    In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with
 `docker inspect <container>`. Four files are expected.
 
+```bash
+$ for i in $(docker ps -qa);do docker inspect $i >> logs/task_4/inspect_container_${i}.json;done
+```
+
 4. Based on the three output files you have collected, what can you say about the way we generate it? What is the problem if any?
 
+Le problème de cette méthode est pour l'instant qu'elle remplace le contenue du fichier et efface les ancien enregistrement ce qui n'est pas idéal quand l'on construire dynamiquement la configuration.
 
 ### Task 5
 
