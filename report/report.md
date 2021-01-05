@@ -251,9 +251,7 @@ All files are in the folder.
 2. Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide
    references to your readings for the improvements.
 
-```
-The given is relatively satisfactory, but way too cumbersome to deploy at scale due to its numberious tedious manual tasks. It would be much more appropriate to use an orchestration technology (Puppet/Ansible/SaltStack) that drives such cases.
-```
+The given result is relatively satisfactory, but way too cumbersome to deploy at scale due to its numberous and tedious manual tasks. It would be much more appropriate to use an orchestration technology (Puppet/Ansible/SaltStack) that enables such cases with great automation while still having granularity over deploy variations.
 
 3. (Optional:) Present a live demo where you add and remove a backend container.
 
