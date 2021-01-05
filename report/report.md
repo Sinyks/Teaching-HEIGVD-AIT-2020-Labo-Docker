@@ -112,7 +112,7 @@ $ docker-compose logs --no-color webapp2 > ./logs/task_2/webapp2.log
 
 2. Give the answer to the question about the existing problem with the current solution.
 
-**[M4]** To manage our loadbalancer's autoconfiguration we introduce the `Serf` tool which will let our containers communicate between themselves in a decentralized cluster. This lets the loadbalancer configure its reachable host's list more dynamically than before.
+**[M4]** To manage our loadbalancer's auto configuration we introduce the `Serf` tool which will let our containers communicate between themselves in a decentralized cluster. This lets the loadbalancer configure its reachable host's list more dynamically than before.
 
 The `--replay` problem we saw before is interesting as we use docker container which the use of s6 describes this `mantra`:
 
@@ -124,10 +124,10 @@ When the container quits, we'll replace it with a new instance and, therefore a 
 
 **How does Serf work ?**
 
-Serf uses a GOSSIP implémentation. It works like this:
+Serf uses a GOSSIP implementation. It works like this:
 
 - A lone node can either create a new cluster or join an already existing one.
-- When a new node joins a cluster, it first synchronize with other nodes (annonce et découverte **METTRE EN ANGLAIS**)
+- When a new node joins a cluster, it first synchronize with other nodes (announcement and discovery)
 - It then starts to gossip, to be known in the cluster
 
 **Alternate solution**
@@ -176,7 +176,9 @@ Squash newly built layers into a single new layer
 
 `--squash` works like this: once the build is completed, Docker will create a new image that loads the differences from each layer into a new single layer and reference all the parent's layer. It squashes them in only one.
 
-Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
+2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
+
+**TODO**
 
 3. Provide the `/tmp/haproxy.cfg` file generated in the `ha` container after each step.  Place the output into the `logs` folder like you
    already did for the Docker logs in the previous tasks. Three files are expected.
@@ -187,6 +189,8 @@ Propose a different approach to architecture our images to be able to reuse as m
 ```bash
 $ for i in $(docker ps -qa);do docker inspect $i >> logs/task_4/inspect_container_${i}.json;done
 ```
+
+All files are in the folder.
 
 4. Based on the three output files you have collected, what can you say about the way we generate it? What is the problem if any?
 
