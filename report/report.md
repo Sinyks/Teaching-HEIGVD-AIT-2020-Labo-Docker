@@ -162,7 +162,7 @@ Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant
 
   There are also some articles about techniques to reduce the imagesize. Try to find them. They are talking about `squashing` or `flattening` images.
 
-**R:** Lorsque l'on effectue plusieur action (RUN, COPY,...) dans le dockerfile cela va, lors du build nous créer des layers R/O qui seront réutiliser lors du build si aucun changement n'a eu lieu sur la ligne en question, cela rendra la mise à jour de l'image certe plus rapide cependant la création de multiple layers aura un impact sur la taille des images. Il est donc d'usage de regrouper les action/commandes de façon judicieuse (un seul RUN pour l'installation des packages par ex.). 
+**R:** Lorsque l'on effectue plusieur action (RUN, COPY,...) dans le dockerfile cela va, lors du build nous créer des layers R/O qui seront réutiliser lors du build si aucun changement n'a eu lieu sur la ligne en question, cela rendra la mise à jour de l'image certe plus rapide cependant la création de multiple layers aura un impact sur la taille des images. Il est donc d'usage de regrouper les action/commandes de façon judicieuse (un seul RUN pour l'installation des packages par ex.).
 
 **Autres moyens:** TODO
 
@@ -213,6 +213,10 @@ experimentation according to your screenshots.
 
 2. Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide
    references to your readings for the improvements.
+
+```
+The given is relatively satisfactory, but way too cumbersome to deploy at scale due to its numberious tedious manual tasks. It would be much more appropriate to use an orchestration technology (Puppet/Ansible/SaltStack) that drives such cases.
+```
 
 3. (Optional:) Present a live demo where you add and remove a backend container.
 
