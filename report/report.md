@@ -31,6 +31,8 @@ Do you think our current solution is able to run additional management processes
 What happens if we add more web server nodes? Do you think it is really dynamic? It's far away from being a dynamic configuration. Can you propose a solution to solve this?
 
 
+#### First answer to main question 
+
 - **[M1]**
 No, Because we can't manage manually the failure of the containers (with 2 it is ok but with more than 1K services it will be complicated)
 - **[M2]**
@@ -177,8 +179,8 @@ Squash newly built layers into a single new layer
 `--squash` works like this: once the build is completed, Docker will create a new image that loads the differences from each layer into a new single layer and reference all the parent's layer. It squashes them in only one.
 
 2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
-
-**TODO**
+**TO REVIEW**
+For a better approach we can write a custom image who can reunite all the need of our container and just use it as template for our containers with the ``FROM``. This will spare some  disk space because our news images will use the R/O layers define in the template.
 
 3. Provide the `/tmp/haproxy.cfg` file generated in the `ha` container after each step.  Place the output into the `logs` folder like you
    already did for the Docker logs in the previous tasks. Three files are expected.
@@ -186,9 +188,10 @@ Squash newly built layers into a single new layer
    In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with
 `docker inspect <container>`. Four files are expected.
 
-```bash
-$ for i in $(docker ps -qa);do docker inspect $i >> logs/task_4/inspect_container_${i}.json;done
-```
+   we can do it with the following command
+   ```bash
+   $ for i in $(docker ps -qa);do docker inspect $i > logs/task_4/inspect_container_${i}.json;done
+   ```
 
 All files are in the folder.
 
