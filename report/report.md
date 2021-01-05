@@ -168,9 +168,15 @@ All files are in the folder.
 
 **R**: When we run multiple actions (RUN, COPY, ...) in a dockerfile , during a build, we will get R/O layers which will be reused in the builds if no changes happened on the particular line, this will make the image update certainly faster, but multiple layer creation will have an impact on the image size. It's therefore more usual to group commands/actions judiciously (ex: Only one RUN for packages installation).
 
-**Other means:** TODO
+**Other means:**  Since Docker 1.13 we can use the `--squash` flag when we build an image, this feature needs the experimental flags for some deamons. This is the description from the Docker documentation: 
 
-2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
+```
+Squash newly built layers into a single new layer
+```
+
+`--squash` works like this: once the build is completed, Docker will create a new image that loads the differences from each layer into a new single layer and reference all the parent's layer. It squashes them in only one.
+
+Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
 
 3. Provide the `/tmp/haproxy.cfg` file generated in the `ha` container after each step.  Place the output into the `logs` folder like you
    already did for the Docker logs in the previous tasks. Three files are expected.
