@@ -44,7 +44,7 @@ Do you think our current solution is able to run additional management processes
 
 What happens if we add more web server nodes? Do you think it is really dynamic? It's far away from being a dynamic configuration. Can you propose a solution to solve this?
 
-**A:**One approach would be to set a given number of servers for a backend, say 10, and use resolvers instead of hard-coded IP addresses.
+**A:** One approach would be to set a given number of servers for a backend, say 10, and use resolvers instead of hard-coded IP addresses.
 
 
 ```
