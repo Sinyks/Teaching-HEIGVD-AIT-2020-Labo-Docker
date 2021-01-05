@@ -61,13 +61,12 @@ That way, we can assign any number of real backend servers for HAProxy to use th
 
 The page ``192.168.42.42:1936``
 
-![](./report/images/capture/task0/Q1.png)
+![](./images/capture/task0/Q1.png)
 
 The URL of our Repository is :
 https://github.com/Sinyks/Teaching-HEIGVD-AIT-2020-Labo-Docker
 
 ### Task 1
-
 
 **Deliverables**:
 
@@ -113,26 +112,27 @@ $ docker-compose logs --no-color webapp2 > ./logs/task_2/webapp2.log
 
 2. Give the answer to the question about the existing problem with the current solution.
 
-**[M4]** Pour gérer l'autoconfiguration de notre loadbalancer nous avons introduit l'outil ``Serf`` qui va permettre à nos container de communiquer entre eux dans un cluster décentraliser. Permettant au loadbalancer de configurer sa liste d'host disponible de façon plus dynamique
+**[M4]** To manage our loadbalancer's autoconfiguration we introduce the `Serf` tool which will let our containers communicate between themselves in a decentralized cluster. This lets the loadbalancer configure its reachable host's list more dynamically than before.
 
-Une problématique soulevé plus haut, usage du ``--replay``, est intéressante, comme nous utilisons des conteneur docker dont l'usage de s6 nous décris ce ``mantra``.
+The `--replay` problem we saw before is interesting as we use docker container which the use of s6 describes this `mantra`:
 
 - Containers should stop when that thing stops
 
-Quand le container va quitter nous le remplacerons par une nouvelle instance et donc un conteneur différent.
+When the container quits, we'll replace it with a new instance and, therefore a different container.
 
 3. Give an explanation on how `Serf` is working. Read the official website to get more details about the `GOSSIP` protocol used in `Serf`. Try to find other solutions that can be used to solve similar situations where we need some auto-discovery mechanism.
 
-**Fonctionnement de Serf**
+**How does Serf work ?**
 
-Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant:
-   - Un noeud seul peut créer un nouveau cluster ou rejoindre un existant
-   - Dès qu'un nouveau noeud rejoins un cluster il commence par faire se synchroniser avec d'autre noeuds (annonce et découverte)
-   - Il commence ensuite à bavarder, communiquer sa préscence dans le cluster
+Serf uses a GOSSIP implémentation. It works like this:
 
-**Autre solution**
+- A lone node can either create a new cluster or join an already existing one.
+- When a new node joins a cluster, it first synchronize with other nodes (annonce et découverte **METTRE EN ANGLAIS**)
+- It then starts to gossip, to be known in the cluster
 
-   Autre que ``Serf`` il existe d'autre outil pour effectuer de la découverte automatique, on peut citer ``Consul`` qui s'appuie sur la technologie de Serf ou encore ``Treafik`` qui gère la découverte de façon centralisé.
+**Alternate solution**
+
+`Serf` is not the only tool that can do automatic discovery, we could talk about `Consul` which is based on `Serf's` technology or `Treafik` that manage the discovery in a centralized manner
 
 ### Task 3
 
@@ -140,7 +140,11 @@ Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant
 
 1. Provide the docker log output for each of the containers:  `ha`, `s1` and `s2`.Put your logs in the `logs` directory you created in the previous task.
 
+All files are in the folder.
+
 2. Provide the logs from the `ha` container gathered directly from the `/var/log/serf.log` file present in the container. Put the logs in the `logs` directory in your repo.
+
+All files are in the folder.
 
 ### Task 4
 
@@ -162,9 +166,9 @@ Serf utilise une implémentation du protocol GOSSIP. Son principe est le suivant
 
   There are also some articles about techniques to reduce the imagesize. Try to find them. They are talking about `squashing` or `flattening` images.
 
-**R:** Lorsque l'on effectue plusieur action (RUN, COPY,...) dans le dockerfile cela va, lors du build nous créer des layers R/O qui seront réutiliser lors du build si aucun changement n'a eu lieu sur la ligne en question, cela rendra la mise à jour de l'image certe plus rapide cependant la création de multiple layers aura un impact sur la taille des images. Il est donc d'usage de regrouper les action/commandes de façon judicieuse (un seul RUN pour l'installation des packages par ex.).
+**R**: When we run multiple actions (RUN, COPY, ...) in a dockerfile , during a build, we will get R/O layers which will be reused in the builds if no changes happened on the particular line, this will make the image update certainly faster, but multiple layer creation will have an impact on the image size. It's therefore more usual to group commands/actions judiciously (ex: Only one RUN for packages installation).
 
-**Autres moyens:** TODO
+**Other means:** TODO
 
 2. Propose a different approach to architecture our images to be able to reuse as much as possible what we have done. Your proposition should also try to avoid as much as possible repetitions between your images.
 
@@ -180,7 +184,7 @@ $ for i in $(docker ps -qa);do docker inspect $i >> logs/task_4/inspect_containe
 
 4. Based on the three output files you have collected, what can you say about the way we generate it? What is the problem if any?
 
-Le problème de cette méthode est pour l'instant qu'elle remplace le contenue du fichier et efface les ancien enregistrement ce qui n'est pas idéal quand l'on construire dynamiquement la configuration.
+This method's problem is that it replaces the file's content and therefore erases the older files, which is not ideal when we try to dynamically build the configuration.
 
 ### Task 5
 
@@ -191,12 +195,18 @@ Le problème de cette méthode est pour l'instant qu'elle remplace le contenue d
 In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with
    `docker inspect <container>`. Four files are expected.
 
+All files are in the folder.
+
 2. Provide the list of files from the `/nodes` folder inside the `ha` container. One file expected with the command output.
+
+All files are in the folder.
 
 3. Provide the configuration file after you stopped one container and the list of nodes present in the `/nodes` folder. One file expected
    with the command output. Two files are expected.
 
  In addition, provide a log file containing the output of the `docker ps` console. One file expected.
+
+All files are in the folder.
 
 4. (Optional:) Propose a different approach to manage the list of backend nodes. You do not need to implement it. You can also propose your
    own tools or the ones you discovered online. In that case, do not forget to cite your references.
@@ -208,8 +218,11 @@ In addition, provide a log file containing the output of the `docker ps` console
 1. Take a screenshots of the HAProxy stat page showing more than 2 web applications running. Additional screenshots are welcome to see a
    sequence of experimentations like shutting down a node and starting more nodes.
 
-   Also provide the output of `docker ps` in a log file. At least one file is expected. You can provide one output per step of your
-experimentation according to your screenshots.
+   Also provide the output of `docker ps` in a log file. At least one file is expected. You can provide one output per step of your experimentation according to your screenshots.
+
+All files are in the folder.
+
+![haproxy_stats](./images/capture/task6/haproxy_stats.png)
 
 2. Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide
    references to your readings for the improvements.
