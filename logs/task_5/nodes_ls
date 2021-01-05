@@ -1,0 +1,6 @@
+root@ea1da2cb0020:/# ls -lash /nodes
+total 12K
+1.0K drwxr-xr-x  2 root root  4 Jan  5 13:46 .
+9.0K drwxr-xr-x 25 root root 28 Jan  5 13:46 ..
+1.0K -rw-r--r--  1 root root 27 Jan  5 13:46 18f202275c95
+1.0K -rw-r--r--  1 root root 27 Jan  5 13:46 f159d086f969
